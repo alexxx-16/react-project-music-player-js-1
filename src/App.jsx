@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { AllSongs } from "./components/Allsongs";
+import { MusicPlayer } from "./components/MusicPlayer";
+import { Navbar } from "./components/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router";
+import { Playlists } from "./components/Playlists";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <BrowserRouter>
+      <div className="flex min-h-screen flex-col items-center gap-4 bg-zinc-900 p-6">
+        <Navbar />
 
-export default App
+        <main className="flex w-full max-w-4xl justify-between gap-4 text-white">
+          <div className="flex-1">
+            <MusicPlayer />
+          </div>
+
+          <div className="flex-1">
+            <Routes>
+              <Route path="/" element={<AllSongs />} />
+              <Route path="/playlists" element={<Playlists />} />
+            </Routes>
+          </div>
+        </main>
+      </div>
+    </BrowserRouter>
+  );
+};
+
+export default App;
