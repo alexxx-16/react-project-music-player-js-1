@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useMusic } from "../context/MusicContext";
+import { Button } from "./Button";
 
 export const MusicPlayer = () => {
   const {
@@ -49,9 +50,9 @@ export const MusicPlayer = () => {
   }, [currentSong]);
 
   return (
-    <div className="flex flex-col items-center gap-4 rounded-xl bg-zinc-800 px-4 py-8">
+    <div className="flex flex-col items-center gap-4 rounded-xl bg-zinc-800 px-4 py-8 ring ring-zinc-700">
       <audio ref={audioRef} src={currentSong.url} />
-      <div className="h-64 w-64">
+      <div className="max-h-64 max-w-64">
         <img
           src={currentSong.image}
           alt={currentSong.title}
@@ -80,11 +81,11 @@ export const MusicPlayer = () => {
         <span>{formatTime(duration)}</span>
       </div>
       <div className="flex w-full justify-evenly">
-        <button onClick={lastSong}>last</button>
-        <button onClick={() => setIsPlaying(!isPlaying)}>
+        <Button onClick={lastSong}>last</Button>
+        <Button onClick={() => setIsPlaying(!isPlaying)}>
           {isPlaying ? <span>pause</span> : <span>play</span>}
-        </button>
-        <button onClick={nextSong}>next</button>
+        </Button>
+        <Button onClick={nextSong}>next</Button>
       </div>
     </div>
   );

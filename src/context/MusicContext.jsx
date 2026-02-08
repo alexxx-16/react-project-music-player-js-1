@@ -45,6 +45,7 @@ export const MusicProvider = ({ children }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [playlists, setPlayLists] = useState([]);
 
   const currentSong = songs[currentSongIndex];
 
@@ -62,6 +63,16 @@ export const MusicProvider = ({ children }) => {
   const lastSong = () =>
     setCurrentSongIndex((prev) => (prev - 1 + songs.length) % songs.length);
 
+  const createPlaylist = (name) => {
+    const newPlayList = {
+      id: Date.now(),
+      name,
+      songs: [],
+    };
+
+    setPlayLists((prev) => [...prev, newPlayList]);
+  };
+
   return (
     <MusicContext.Provider
       value={{
@@ -77,6 +88,8 @@ export const MusicProvider = ({ children }) => {
         setIsPlaying,
         lastSong,
         nextSong,
+        createPlaylist,
+        playlists,
       }}
     >
       {children}

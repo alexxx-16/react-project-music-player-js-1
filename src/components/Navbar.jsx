@@ -1,14 +1,24 @@
+import { Link, useLocation } from "react-router";
+
 export const Navbar = () => {
+  const location = useLocation();
+
   return (
-    <nav className="flex w-full max-w-4xl justify-between rounded-xl bg-zinc-700 px-6 py-2 shadow-md">
+    <nav className="flex w-full max-w-4xl justify-between rounded-xl bg-zinc-800 px-6 py-3 shadow-md ring ring-zinc-700">
       <div className="text-xl text-purple-400">Alex Music</div>
       <div className="text-md flex gap-4 text-white">
-        <button className="transition-all duration-200 hover:text-purple-300">
+        <Link
+          className={`transition-all duration-200 hover:text-purple-300 active:scale-95 ${location.pathname === "/" ? "text-white" : "text-white/50"}`}
+          to="/"
+        >
           All Songs
-        </button>
-        <button className="transition-all duration-200 hover:text-purple-300">
+        </Link>
+        <Link
+          className={`transition-all duration-200 hover:text-purple-300 active:scale-95 ${location.pathname === "/playlists" ? "text-white" : "text-white/50"}`}
+          to="/playlists"
+        >
           Playlists
-        </button>
+        </Link>
       </div>
     </nav>
   );

@@ -5,7 +5,7 @@ export const AllSongs = () => {
     useMusic();
 
   return (
-    <div className="rounded-xl bg-zinc-800 px-4 py-8">
+    <div className="rounded-xl bg-zinc-800 px-4 py-8 ring ring-zinc-700">
       <h2 className="mb-4 text-center">All Songs ({allSongs.length})</h2>
       <div className="flex flex-col gap-4">
         {allSongs.map((song, index) => (
